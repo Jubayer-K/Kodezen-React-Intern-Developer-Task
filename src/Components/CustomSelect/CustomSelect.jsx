@@ -91,10 +91,7 @@ const CustomSelect = ({
       }`}
       ref={selectRef}
     >
-      <h2
-        style={{
-          textAlign: "center",
-        }}
+      <h2 className="kzui-component-title"
       >
         Custom Select Component
       </h2>

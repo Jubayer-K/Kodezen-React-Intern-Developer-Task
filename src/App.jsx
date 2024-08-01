@@ -1,5 +1,4 @@
 import { useState } from "react";
-import "./App.css";
 import CustomSelect from "./Components/CustomSelect/CustomSelect";
 
 function App() {
@@ -42,13 +41,7 @@ function App() {
     setValue(selectedOption);
   };
 
-  const handleMenuOpen = () => {
-    console.log("Menu opened");
-  };
 
-  const handleSearch = (searchTerm) => {
-    console.log("Search:", searchTerm);
-  };
 
   return (
     <div className="kzui-custom-select_main-container">
@@ -57,7 +50,7 @@ function App() {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          height: "60vh",
+          height: "40vh",
         }}
       >
         <CustomSelect
@@ -70,8 +63,6 @@ function App() {
           isGrouped={true}
           isMulti={true}
           onChangeHandler={handleChange}
-          onMenuOpen={handleMenuOpen}
-          onSearchHandler={handleSearch}
         />
       </div>
     </div>
