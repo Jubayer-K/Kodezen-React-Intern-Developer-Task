@@ -15,16 +15,19 @@ const CustomSelect = ({
     onMenuOpen,
     onSearchHandler
 }) => {
+    // State variables to manage dropdown state and search term
     const [isOpen, setIsOpen] = useState(false);
     const [searchTerm, setSearchTerm] = useState('');
     const selectRef = useRef(null);
 
+    // Effect to call onMenuOpen when the menu opens
     useEffect(() => {
         if (isOpen && onMenuOpen) {
             onMenuOpen();
         }
     }, [isOpen, onMenuOpen]);
 
+    // Effect to handle clicks outside the component to close the dropdown
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (selectRef.current && !selectRef.current.contains(event.target)) {
@@ -38,6 +41,7 @@ const CustomSelect = ({
         };
     }, []);
 
+    // Handler for selecting an option
     const handleSelect = (option) => {
         if (isMulti) {
             const newValue = value && Array.isArray(value) && value.includes(option)
@@ -50,11 +54,13 @@ const CustomSelect = ({
         }
     };
 
+    // Handler for clearing the selection
     const handleClear = () => {
         onChangeHandler(isMulti ? [] : null);
         setSearchTerm('');
     };
 
+    // Handler for search input changes
     const handleSearch = (event) => {
         const value = event.target.value;
         setSearchTerm(value);
@@ -63,6 +69,7 @@ const CustomSelect = ({
         }
     };
 
+    // Filtered options based on the search term
     const filteredOptions = isGrouped
         ? options.map(group => ({
             ...group,
@@ -76,6 +83,9 @@ const CustomSelect = ({
 
     return (
         <div className={`kzui-custom-select ${isDisabled ? 'kzui-custom-select--disabled' : ''}`} ref={selectRef}>
+            <h2 style={{
+                textAlign:'center'
+        }}>Custom Select Component</h2>
             <div
                 className="kzui-custom-select__input"
                 onClick={() => !isDisabled && setIsOpen(!isOpen)}
@@ -167,6 +177,7 @@ const CustomSelect = ({
     );
 };
 
+// PropTypes validation for props
 CustomSelect.propTypes = {
     isClearable: PropTypes.bool,
     isSearchable: PropTypes.bool,
@@ -208,6 +219,7 @@ CustomSelect.propTypes = {
     onSearchHandler: PropTypes.func,
 };
 
+// Default props for the component
 CustomSelect.defaultProps = {
     isClearable: false,
     isSearchable: false,
