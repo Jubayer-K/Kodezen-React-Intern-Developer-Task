@@ -23,6 +23,10 @@
     background: linear-gradient(135deg, #eceff1, #ffffff);
     transition: border-color 0.3s, box-shadow 0.3s;
   }
+
+  .kzui-custom-select__input:hover{
+    background: linear-gradient(135deg, #00437036, #ffffff);
+  }
   
   /* Focus state */
   .kzui-custom-select__input:focus-within {
@@ -72,9 +76,22 @@
   
   /* Clear all values */
   .kzui-custom-select__clear-all {
+    text-align: center;
+    background-color: rgba(255, 12, 12, 0.882);
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 30px;
+    font-family: monospace;
+    color: white;
+    padding: 0px 20px;
     margin-left: 10px;
-    color: #999;
+    text-align: center;
     cursor: pointer;
+    
+  }
+  .kzui-custom-select__clear-all:hover{
+    background-color: rgba(255, 12, 12, 0.364);
+    color: red;
   }
   
   /* Dropdown menu */
@@ -83,7 +100,7 @@
     top: 100%;
     left: 0;
     width: 100%;
-    max-height: 250px;
+    max-height: 500px;
     overflow-y: auto;
     border: 1px solid #ccc;
     border-radius: 4px;
