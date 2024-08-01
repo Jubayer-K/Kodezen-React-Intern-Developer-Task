@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+import PropTypes from 'prop-types';
 // import './CustomSelect.css'
 
 /**
@@ -172,6 +173,59 @@ const CustomSelect = ({
             )}
         </div>
     );
+};
+
+CustomSelect.propTypes = {
+    isClearable: PropTypes.bool,
+    isSearchable: PropTypes.bool,
+    isDisabled: PropTypes.bool,
+    options: PropTypes.arrayOf(
+        PropTypes.oneOfType([
+            PropTypes.shape({
+                label: PropTypes.string.isRequired,
+                options: PropTypes.arrayOf(
+                    PropTypes.shape({
+                        label: PropTypes.string.isRequired,
+                        value: PropTypes.any.isRequired,
+                    })
+                )
+            }),
+            PropTypes.shape({
+                label: PropTypes.string.isRequired,
+                value: PropTypes.any.isRequired,
+            })
+        ])
+    ).isRequired,
+    value: PropTypes.oneOfType([
+        PropTypes.shape({
+            label: PropTypes.string.isRequired,
+            value: PropTypes.any.isRequired,
+        }),
+        PropTypes.arrayOf(
+            PropTypes.shape({
+                label: PropTypes.string.isRequired,
+                value: PropTypes.any.isRequired,
+            })
+        )
+    ]),
+    placeholder: PropTypes.string,
+    isGrouped: PropTypes.bool,
+    isMulti: PropTypes.bool,
+    onChangeHandler: PropTypes.func.isRequired,
+    onMenuOpen: PropTypes.func,
+    onSearchHandler: PropTypes.func,
+};
+
+CustomSelect.defaultProps = {
+    isClearable: false,
+    isSearchable: false,
+    isDisabled: false,
+    value: null,
+    placeholder: 'Select...',
+    isGrouped: false,
+    isMulti: false,
+    onMenuOpen: () => {},
+    onSearchHandler: () => {},
 };
 
 export default CustomSelect;
