@@ -7,7 +7,7 @@ This project is a custom select dropdown component for React that is both visual
  ### Grouped Options: Group related options together.
  ### Smooth Animations: Animations for dropdown open/close, option selection, etc.
 
- Visit live site: [Khan Exhibit](https://tenth-assignment-khan-exhibit.web.app)
+ Visit live site: [Live](https://kodezen-task-by-jubayer.netlify.app/)
 
 
 ### Cloning the Repository
