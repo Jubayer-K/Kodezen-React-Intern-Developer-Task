@@ -1,22 +1,7 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import PropTypes from 'prop-types';
-// import './CustomSelect.css'
+import './CustomSelect.css'; // Ensure this is imported
 
-/**
- * CustomSelect component
- * @param {Object} props - Component props
- * @param {boolean} props.isClearable - If the select can be cleared
- * @param {boolean} props.isSearchable - If the select has a search input
- * @param {boolean} props.isDisabled - If the select is disabled
- * @param {Array} props.options - The options for the select, can be grouped
- * @param {Object|Array} props.value - The currently selected value(s)
- * @param {string} props.placeholder - The placeholder text when no value is selected
- * @param {boolean} props.isGrouped - If the options are grouped
- * @param {boolean} props.isMulti - If multiple selections are allowed
- * @param {Function} props.onChangeHandler - Handler function for value changes
- * @param {Function} props.onMenuOpen - Handler function when the menu is opened
- * @param {Function} props.onSearchHandler - Handler function for search input changes
- */
 const CustomSelect = ({
     isClearable,
     isSearchable,
@@ -34,10 +19,25 @@ const CustomSelect = ({
     const [searchTerm, setSearchTerm] = useState('');
     const selectRef = useRef(null);
 
-    /**
-     * Handle selecting an option
-     * @param {Object} option - The selected option
-     */
+    useEffect(() => {
+        if (isOpen && onMenuOpen) {
+            onMenuOpen();
+        }
+    }, [isOpen, onMenuOpen]);
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (selectRef.current && !selectRef.current.contains(event.target)) {
+                setIsOpen(false);
+            }
+        };
+
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, []);
+
     const handleSelect = (option) => {
         if (isMulti) {
             const newValue = value && Array.isArray(value) && value.includes(option)
@@ -50,18 +50,11 @@ const CustomSelect = ({
         }
     };
 
-    /**
-     * Handle clearing the selected value(s)
-     */
     const handleClear = () => {
         onChangeHandler(isMulti ? [] : null);
         setSearchTerm('');
     };
 
-    /**
-     * Handle search input change
-     * @param {Object} event - The input change event
-     */
     const handleSearch = (event) => {
         const value = event.target.value;
         setSearchTerm(value);
@@ -70,7 +63,6 @@ const CustomSelect = ({
         }
     };
 
-    // Filter options based on search term
     const filteredOptions = isGrouped
         ? options.map(group => ({
             ...group,
