@@ -1,11 +1,11 @@
 This project is a custom select dropdown component for React that is both visually appealing and highly functional. It includes features such as search functionality, clearable selections, multiple selections, grouped options, and smooth animations.
 
 # Features
-## Clearable: Ability to clear selected options.
-## Searchable: Search through options with a search input.
-## Multi-select: Select multiple options.
-## Grouped Options: Group related options together.
-## Smooth Animations: Animations for dropdown open/close, option selection, etc.
+ ### Clearable: Ability to clear selected options.
+ ### Searchable: Search through options with a search input.
+ ### Multi-select: Select multiple options.
+ ### Grouped Options: Group related options together.
+ ### Smooth Animations: Animations for dropdown open/close, option selection, etc.
 
 
 ### Cloning the Repository
